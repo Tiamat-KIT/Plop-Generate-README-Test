@@ -27,7 +27,7 @@ module.exports = (
             return [
                 {
                     type: "add",
-                    path: "./README.md",
+                    path: "./Example-README.md",
                     template: `# ${__dirname.split("\\").pop()}\n### 概要\n ${data.description}\n\n${DisplayInline(selected)}`
                 }
             ]
