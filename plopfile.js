@@ -15,12 +15,15 @@ module.exports = (
         ) => {
             // const InputImg = `<img src="https://img.shields.io/badge/-${item}-000000.svg?logo=React&style=popout">`;
             // const selected = data.MultipleChoice.map(item => `## ${item}`).join("\n");
+            const DisplayInline = (imgs) => {
+                return `<div style="display: inline">\n${imgs}\n</div>`
+            }
             const selected = data.MultipleChoice.map(item => `<img src="https://img.shields.io/badge/-${item}-000000.svg?logo=${item.toLowerCase()}&style=popout">`).join("\n");
             return [
                 {
                     type: "add",
                     path: "./README.md",
-                    template: selected
+                    template: DisplayInline(selected)
                 }
             ]
         }
