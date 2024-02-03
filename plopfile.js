@@ -7,8 +7,13 @@ module.exports = (
         prompts: [{
                 type: "checkbox",
                 name: "MultipleChoice",
-                message: "What do you want to include in your README?",
+                message: "package in this project. Input use package names.",
                 choices: ["React","Next.js","Vue.js","Nuxt.js","Angular","Svelte","Express.js","Solid.js","Playwright","typescript","javascript","storybook","TailwindCSS","daisyui"]
+        },{
+            type: "input",
+            name: "description",
+            message: "It's a description of this project."
+        
         }],
         actions: (
             data
@@ -23,10 +28,9 @@ module.exports = (
                 {
                     type: "add",
                     path: "./README.md",
-                    template: DisplayInline(selected)
+                    template: `# ${__dirname.split("\\").pop()}\n### 概要\n ${data.description}\n\n${DisplayInline(selected)}`
                 }
             ]
         }
     })
-
 }
