@@ -8,7 +8,7 @@ module.exports = (
                 type: "checkbox",
                 name: "MultipleChoice",
                 message: "What do you want to include in your README?",
-                choices: ["React","Next.js","Vue.js","Nuxt.js","Angular","Svelte","Express.js","Solid.js","Playwright","typescript","javascript","storybook","TailwindCSS","DaisyUI"]
+                choices: ["React","Next.js","Vue.js","Nuxt.js","Angular","Svelte","Express.js","Solid.js","Playwright","typescript","javascript","storybook","TailwindCSS","daisyui"]
         }],
         actions: (
             data
