@@ -1,0 +1,13 @@
+{
+  "name": "Plop-Generate-README-Test",
+  "version": "1.0.0",
+  "description": "PlopでREADMEを自動生成してみたい",
+  "repository": "https://github.com/Tiamat-KIT/Plop-Generate-README-Test.git",
+  "author": "Amo_Taiki_from_Desktop <c1101081@planet.kanazawa-it.ac.jp>",
+  "dependencies": {
+    "plop": "^4.0.1"
+  },
+  "scripts": {
+    "plop": "plop"
+  }
+}
