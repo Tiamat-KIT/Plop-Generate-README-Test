@@ -61,9 +61,9 @@ module.exports = (plop) => {
         actions: (data) => {
             const generateSkillIcon = (name) => {
                 if(name === "TypeScript" || name === "JavaScript"){
-                    return `<img src="https://api.iconify.design/skill-icons:${lowerCaseAndRemoveDot(name)}.svg" alt="${name}" width="24" height="24" />`;
+                    return `<img src="https://api.iconify.design/skill-icons:${lowerCaseAndRemoveDot(name)}.svg" alt="${name}" width="32" height="32" />`;
                 }
-                return `<img src="https://api.iconify.design/skill-icons:${lowerCaseAndRemoveDot(name)}-dark.svg" alt="${name}" width="24" height="24" />`;
+                return `<img src="https://api.iconify.design/skill-icons:${lowerCaseAndRemoveDot(name)}-dark.svg" alt="${name}" width="32" height="32" />`;
             };
 
             const frontendLang = data.isFullStack ? data.Lang : data.FrontendLang;
