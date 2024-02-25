@@ -55,6 +55,9 @@ module.exports = (plop) => {
         ],
         actions: (data) => {
             const generateSkillIcon = (name) => {
+                if(name === "TypeScript" || name === "JavaScript"){
+                    return `<img src="https://api.iconify.design/skill-icons:${lowerCaseAndRemoveDot(name)}.svg" alt="${name}" width="24" height="24" />`;
+                }
                 return `<img src="https://api.iconify.design/skill-icons:${lowerCaseAndRemoveDot(name)}-dark.svg" alt="${name}" width="24" height="24" />`;
             };
 
@@ -73,7 +76,7 @@ module.exports = (plop) => {
                     {
                         type: "add",
                         path: "./Ex-README.md",
-                        template: `# Project Title\n\n## Frontend\n\n- Language: ${langIcon}\n- Frameworks: ${frameworkIcons}\n\n## Backend\n\n- Language: ${backendLangIcon}\n- Frameworks: ${backendFrameworkIcons}\n`
+                        template: `# Project Title\n\n## Frontend\n\n### Language: \n${langIcon}\n### Frameworks: \n${frameworkIcons}\n\n## Backend\n\n### Language: \n${backendLangIcon}\n### Frameworks: \n${backendFrameworkIcons}\n`
                     }
                 ];
             } else {
@@ -81,7 +84,7 @@ module.exports = (plop) => {
                     {
                         type: "add",
                         path: "./Ex-README.md",
-                        template: `# Project Title\n\n## Full Stack\n\n- Language: ${langIcon}\n- Frameworks: ${frameworkIcons}\n`
+                        template: `# Project Title\n\n## Full Stack\n\n### Language:\n ${langIcon}\n### Frameworks:\n ${frameworkIcons}\n`
                     }
                 ];
             }
