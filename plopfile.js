@@ -76,7 +76,7 @@ module.exports = (plop) => {
                     {
                         type: "add",
                         path: "./Ex-README.md",
-                        template: `# Project Title\n\n## Frontend\n\n### Language: \n${langIcon}\n### Frameworks: \n${frameworkIcons}\n\n## Backend\n\n### Language: \n${backendLangIcon}\n### Frameworks: \n${backendFrameworkIcons}\n`
+                        template: `# Project Title\n\n## Frontend\n\n### Language: \n${langIcon}\n\n### Frameworks: \n${frameworkIcons}\n\n## Backend\n\n### Language: \n${backendLangIcon}\n\n### Frameworks: \n${backendFrameworkIcons}\n`
                     }
                 ];
             } else {
@@ -84,7 +84,7 @@ module.exports = (plop) => {
                     {
                         type: "add",
                         path: "./Ex-README.md",
-                        template: `# Project Title\n\n## Full Stack\n\n### Language:\n ${langIcon}\n### Frameworks:\n ${frameworkIcons}\n`
+                        template: `# Project Title\n\n## Full Stack\n\n### Language:\n ${langIcon}\n\n### Frameworks:\n ${frameworkIcons}\n`
                     }
                 ];
             }
