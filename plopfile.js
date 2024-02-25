@@ -14,12 +14,12 @@ module.exports = (
                 type: "checkbox",
                 name: "Style",
                 message: "What's Style Library do you use?",
-                choices: ["Sass","Less","Stylus","PostCSS","CSS","SCSS","TailwindCSS","daisyui"]   
+                choices: ["CSS","TailwindCSS","daisyui","shadcn/ui"]   
             },{
                 type: "checkbox",
                 name: "MultipleChoice",
                 message: "package in this project. Input use package names.",
-                choices: ["React","Next.js","Vue.js","Nuxt.js","Angular","Svelte","Express.js","Solid.js","Playwright","storybook"]
+                choices: ["React","Next.js","Vue.js","Nuxt.js","Angular","Svelte","Solid.js","Astro"]
             },{
                 type: "input",
                 name: "description",
