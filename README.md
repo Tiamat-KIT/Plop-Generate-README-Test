@@ -1,4 +1,5 @@
-# Plop-Generate-README-Test
+#  PlopGenerateReadme
+
 ### 概要
 - 簡単に暫定的なREADMEが書けるプログラム。
 - Plopというパッケージに依存
