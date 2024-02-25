@@ -5,6 +5,7 @@
   "repository": "https://github.com/Tiamat-KIT/Plop-Generate-README-Test.git",
   "author": "Amo_Taiki_from_Desktop <c1101081@planet.kanazawa-it.ac.jp>",
   "dependencies": {
+    "inquirer-autocomplete-prompt": "^3.0.1",
     "plop": "^4.0.1"
   },
   "scripts": {

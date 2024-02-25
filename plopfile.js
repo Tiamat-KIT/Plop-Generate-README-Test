@@ -1,50 +1,91 @@
-module.exports = (
-    /** @type {import("plop").NodePlopAPI} */
-    plop
-) => {
-    plop.setGenerator("README",{
+module.exports = (plop) => {
+    plop.setGenerator("README", {
         description: "README.md File For project.",
         prompts: [
             {
-                type: "list",
-                name: "LangName",
-                message: "What's your project Development Language?",
-                choices: ["TypeScript","JavaScript","Python","Java","Ruby","Go","PHP","Rust"]
-            },{
-                type: "checkbox",
-                name: "Style",
-                message: "What's Style Library do you use?",
-                choices: ["CSS","TailwindCSS","daisyui","shadcn/ui"]   
-            },{
-                type: "checkbox",
-                name: "MultipleChoice",
-                message: "package in this project. Input use package names.",
-                choices: ["React","Next.js","Vue.js","Nuxt.js","Angular","Svelte","Solid.js","Astro"]
-            },{
+                type: "confirm",
+                name: "isFullStack",
+                message: "Is this a full-stack project?",
+                default: false
+            },
+            // Common questions for both frontend and backend
+            {
                 type: "input",
                 name: "description",
                 message: "It's a description of this project."
-        }],
-        actions: (
-            data
-        ) => {
-            // const InputImg = `<img src="https://img.shields.io/badge/-${item}-000000.svg?logo=React&style=popout">`;
-            // const selected = data.MultipleChoice.map(item => `## ${item}`).join("\n");
-            const DisplayInline = (imgs) => {
-                return `<div style="display: inline">\n${imgs}\n</div>`
+            },
+            // Conditional prompts based on whether it's a full-stack project or not
+            {
+                when: (answers) => answers.isFullStack,
+                type: "list",
+                name: "frontendLang",
+                message: "What's your frontend Development Language?",
+                choices: ["TypeScript", "JavaScript", "Vue.js", "React", "Angular", "Svelte"]
+            },
+            {
+                when: (answers) => answers.isFullStack,
+                type: "list",
+                name: "backendLang",
+                message: "What's your backend Development Language?",
+                choices: ["Node.js", "Python", "Ruby", "Go", "Java", "PHP"]
+            },
+            {
+                when: (answers) => answers.isFullStack,
+                type: "checkbox",
+                name: "frontendFrameworks",
+                message: "What frontend frameworks do you use?",
+                choices: ["React", "Vue.js", "Angular", "Svelte", "Next.js"]
+            },
+            {
+                when: (answers) => answers.isFullStack,
+                type: "checkbox",
+                name: "backendFrameworks",
+                message: "What backend frameworks do you use?",
+                choices: ["Express.js", "Django", "Rails", "Spring", "Laravel"]
+            },
+            // Questions for frontend only if it's not a full-stack project
+            {
+                when: (answers) => !answers.isFullStack,
+                type: "list",
+                name: "frontendLang",
+                message: "What's your frontend Development Language?",
+                choices: ["TypeScript", "JavaScript", "Vue.js", "React", "Angular", "Svelte"]
+            },
+            {
+                when: (answers) => !answers.isFullStack,
+                type: "checkbox",
+                name: "frontendFrameworks",
+                message: "What frontend frameworks do you use?",
+                choices: ["React", "Vue.js", "Angular", "Svelte", "Next.js"]
+            },
+            // Questions for backend only if it's not a full-stack project
+            {
+                when: (answers) => !answers.isFullStack,
+                type: "list",
+                name: "backendLang",
+                message: "What's your backend Development Language?",
+                choices: ["Node.js", "Python", "Ruby", "Go", "Java", "PHP"]
+            },
+            {
+                when: (answers) => !answers.isFullStack,
+                type: "checkbox",
+                name: "backendFrameworks",
+                message: "What backend frameworks do you use?",
+                choices: ["Express.js", "Django", "Rails", "Spring", "Laravel"]
             }
-            const CurrentDirectoryh1 = "# " + __dirname.split("\\").pop();
-            const RepositoryDescription = "### 概要\n" + data.description;
-            const DevLang = `## 開発言語\n<img src="https://img.shields.io/badge/-${data.LangName}-000000.svg?logo=${data.LangName.toLowerCase()}&style=popout">`;
-            const StyleLibrary = `## Style Library\n${DisplayInline(data.Style.map(item => `<img src="https://img.shields.io/badge/-${item}-000000.svg?logo=${item.toLowerCase()}&style=popout">`))}`;
-            const selected = "## ライブラリ・フレームワーク\n" + data.MultipleChoice.map(item => `<img src="https://img.shields.io/badge/-${item}-000000.svg?logo=${item.toLowerCase()}&style=popout">`).join("\n");
+        ],
+        actions: (data) => {
+            // Here you can generate your README.md content based on the answers
+            // For example, you can use the answers to create a markdown file
+            // This is just a placeholder for the generation logic
             return [
                 {
                     type: "add",
-                    path: "./Example-README.md",
-                    template: `${CurrentDirectoryh1}\n\n${RepositoryDescription}\n\n${DevLang}\n\n${StyleLibrary}\n\n${selected}`
+                    path: "./Extend-README.md",
+                    templateFile: "./template/README.md.hbs",
+                    data: data
                 }
-            ]
+            ];
         }
-    })
-}
+    });
+};
