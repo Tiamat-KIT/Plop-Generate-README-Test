@@ -5,6 +5,11 @@ module.exports = (plop) => {
         description: "README.md File For project.",
         prompts: [
             {
+                type: "input",
+                name: "title",
+                message: "What's your project title?"
+            },
+            {
                 type: "confirm",
                 name: "isFullStack",
                 message: "Is this a Full Stack project?",
@@ -76,7 +81,7 @@ module.exports = (plop) => {
                     {
                         type: "add",
                         path: "./Ex-README.md",
-                        template: `# Project Title\n\n## Frontend\n\n### Language: \n${langIcon}\n\n### Frameworks: \n${frameworkIcons}\n\n## Backend\n\n### Language: \n${backendLangIcon}\n\n### Frameworks: \n${backendFrameworkIcons}\n`
+                        template: `# ${data.title}\n\n## Frontend\n\n### Language: \n${langIcon}\n\n### Frameworks: \n${frameworkIcons}\n\n## Backend\n\n### Language: \n${backendLangIcon}\n\n### Frameworks: \n${backendFrameworkIcons}\n`
                     }
                 ];
             } else {
@@ -84,7 +89,7 @@ module.exports = (plop) => {
                     {
                         type: "add",
                         path: "./Ex-README.md",
-                        template: `# Project Title\n\n## Full Stack\n\n### Language:\n ${langIcon}\n\n### Frameworks:\n ${frameworkIcons}\n`
+                        template: `# ${data.title}\n\n## Full Stack\n\n### Language:\n ${langIcon}\n\n### Frameworks:\n ${frameworkIcons}\n`
                     }
                 ];
             }
