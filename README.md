@@ -27,3 +27,5 @@ OK！
 ざっくりと何ができるのか、それが何であるのかを書く。
 
 
+## 参考URL
+https://www.phind.com/search?cache=l10gia8f5m7arr2rex2t6wkw
