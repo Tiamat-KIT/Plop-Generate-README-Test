@@ -1,3 +1,5 @@
+const lowerCaseAndRemoveDot = (str) => str.toLowerCase().replace(/\./g, '');
+
 module.exports = (plop) => {
     plop.setGenerator("README", {
         description: "README.md File For project.",
@@ -5,87 +7,84 @@ module.exports = (plop) => {
             {
                 type: "confirm",
                 name: "isFullStack",
-                message: "Is this a full-stack project?",
+                message: "Is this a Full Stack project?",
                 default: false
             },
-            // Common questions for both frontend and backend
             {
-                type: "input",
-                name: "description",
-                message: "It's a description of this project."
-            },
-            // Conditional prompts based on whether it's a full-stack project or not
-            {
-                when: (answers) => answers.isFullStack,
                 type: "list",
-                name: "frontendLang",
-                message: "What's your frontend Development Language?",
-                choices: ["TypeScript", "JavaScript", "Vue.js", "React", "Angular", "Svelte"]
+                name: "FrontendLang",
+                message: "What's your project Frontend Development Language?",
+                choices: ["TypeScript", "JavaScript", "Python", "Java", "Ruby", "Go", "PHP", "Rust"],
+                when: (answers) => !answers.isFullStack
             },
             {
-                when: (answers) => answers.isFullStack,
+                type: "checkbox",
+                name: "FrontendFrameworks",
+                message: "What's Frontend Framework do you use?",
+                choices: ["React", "Next.js", "Vue.js", "Nuxt.js", "Angular", "Svelte", "Express.js", "Solid.js", "Playwright", "storybook"],
+                when: (answers) => !answers.isFullStack
+            },
+            {
                 type: "list",
-                name: "backendLang",
-                message: "What's your backend Development Language?",
-                choices: ["Node.js", "Python", "Ruby", "Go", "Java", "PHP"]
+                name: "BackendLang",
+                message: "What's your project Backend Development Language?",
+                choices: ["Node.js", "Python", "Java", "Ruby", "Go", "PHP", "Rust"],
+                when: (answers) => !answers.isFullStack
             },
             {
-                when: (answers) => answers.isFullStack,
                 type: "checkbox",
-                name: "frontendFrameworks",
-                message: "What frontend frameworks do you use?",
-                choices: ["React", "Vue.js", "Angular", "Svelte", "Next.js"]
+                name: "BackendFrameworks",
+                message: "What's Backend Framework do you use?",
+                choices: ["Express.js", "Django", "Spring", "Ruby on Rails", "Laravel", "ASP.NET", "Flask", "FastAPI", "NestJS"],
+                when: (answers) => !answers.isFullStack
             },
             {
-                when: (answers) => answers.isFullStack,
-                type: "checkbox",
-                name: "backendFrameworks",
-                message: "What backend frameworks do you use?",
-                choices: ["Express.js", "Django", "Rails", "Spring", "Laravel"]
-            },
-            // Questions for frontend only if it's not a full-stack project
-            {
-                when: (answers) => !answers.isFullStack,
                 type: "list",
-                name: "frontendLang",
-                message: "What's your frontend Development Language?",
-                choices: ["TypeScript", "JavaScript", "Vue.js", "React", "Angular", "Svelte"]
+                name: "Lang",
+                message: "What's your project Development Language?",
+                choices: ["TypeScript", "JavaScript", "Python", "Java", "Ruby", "Go", "PHP", "Rust"],
+                when: (answers) => answers.isFullStack
             },
             {
-                when: (answers) => !answers.isFullStack,
                 type: "checkbox",
-                name: "frontendFrameworks",
-                message: "What frontend frameworks do you use?",
-                choices: ["React", "Vue.js", "Angular", "Svelte", "Next.js"]
-            },
-            // Questions for backend only if it's not a full-stack project
-            {
-                when: (answers) => !answers.isFullStack,
-                type: "list",
-                name: "backendLang",
-                message: "What's your backend Development Language?",
-                choices: ["Node.js", "Python", "Ruby", "Go", "Java", "PHP"]
-            },
-            {
-                when: (answers) => !answers.isFullStack,
-                type: "checkbox",
-                name: "backendFrameworks",
-                message: "What backend frameworks do you use?",
-                choices: ["Express.js", "Django", "Rails", "Spring", "Laravel"]
+                name: "Frameworks",
+                message: "What's Framework do you use?",
+                choices: ["React", "Next.js", "Vue.js", "Nuxt.js", "Angular", "Svelte", "Express.js", "Solid.js", "Playwright", "storybook"],
+                when: (answers) => answers.isFullStack
             }
         ],
         actions: (data) => {
-            // Here you can generate your README.md content based on the answers
-            // For example, you can use the answers to create a markdown file
-            // This is just a placeholder for the generation logic
-            return [
-                {
-                    type: "add",
-                    path: "./Extend-README.md",
-                    templateFile: "./template/README.md.hbs",
-                    data: data
-                }
-            ];
+            const generateSkillIcon = (name) => {
+                return `<img src="https://api.iconify.design/skill-icons:${lowerCaseAndRemoveDot(name)}-dark.svg" alt="${name}" width="24" height="24" />`;
+            };
+
+            const frontendLang = data.isFullStack ? data.Lang : data.FrontendLang;
+            const frontendFrameworks = data.isFullStack ? data.Frameworks : data.FrontendFrameworks;
+            const backendLang = data.isFullStack ? null : data.BackendLang;
+            const backendFrameworks = data.isFullStack ? null : data.BackendFrameworks;
+
+            const langIcon = generateSkillIcon(frontendLang);
+            const frameworkIcons = frontendFrameworks.map(generateSkillIcon).join('');
+
+            if (!data.isFullStack) {
+                const backendLangIcon = generateSkillIcon(backendLang);
+                const backendFrameworkIcons = backendFrameworks.map(generateSkillIcon).join('');
+                return [
+                    {
+                        type: "add",
+                        path: "./Ex-README.md",
+                        template: `# Project Title\n\n## Frontend\n\n- Language: ${langIcon}\n- Frameworks: ${frameworkIcons}\n\n## Backend\n\n- Language: ${backendLangIcon}\n- Frameworks: ${backendFrameworkIcons}\n`
+                    }
+                ];
+            } else {
+                return [
+                    {
+                        type: "add",
+                        path: "./Ex-README.md",
+                        template: `# Project Title\n\n## Full Stack\n\n- Language: ${langIcon}\n- Frameworks: ${frameworkIcons}\n`
+                    }
+                ];
+            }
         }
     });
 };
