@@ -56,6 +56,11 @@ module.exports = (plop) => {
                 message: "What's Framework do you use?",
                 choices: ["React", "Next.js", "Vue.js", "Nuxt.js", "Angular", "Svelte", "Express.js", "Solid.js", "Playwright", "storybook"],
                 when: (answers) => answers.isFullStack
+            },
+            {
+                type: "input",
+                name: "description",
+                message: "Description:"
             }
         ],
         actions: (data) => {
@@ -81,7 +86,7 @@ module.exports = (plop) => {
                     {
                         type: "add",
                         path: "./Ex-README.md",
-                        template: `# ${data.title}\n\n## Frontend\n\n### Language: \n${langIcon}\n\n### Frameworks: \n${frameworkIcons}\n\n## Backend\n\n### Language: \n${backendLangIcon}\n\n### Frameworks: \n${backendFrameworkIcons}\n`
+                        template: `# ${data.title}\n\n## Frontend\n\n### Language: \n${langIcon}\n\n### Frameworks: \n${frameworkIcons}\n\n## Backend\n\n### Language: \n${backendLangIcon}\n\n### Frameworks: \n${backendFrameworkIcons}\n\n## 説明\n${data.description}`
                     }
                 ];
             } else {
@@ -89,7 +94,7 @@ module.exports = (plop) => {
                     {
                         type: "add",
                         path: "./Ex-README.md",
-                        template: `# ${data.title}\n\n## Full Stack\n\n### Language:\n ${langIcon}\n\n### Frameworks:\n ${frameworkIcons}\n`
+                        template: `# ${data.title}\n\n## Full Stack\n\n### Language:\n ${langIcon}\n\n### Frameworks:\n ${frameworkIcons}\n\n## 説明\n${data.description}`
                     }
                 ];
             }
